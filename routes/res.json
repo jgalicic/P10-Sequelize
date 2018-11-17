@@ -1,0 +1,26 @@
+{
+  "id": 11,
+  "title": "The Martian",
+  "author": "Andy Weir",
+  "genre": "Science Fiction",
+  "first_published": 2014,
+  "Loans": [
+    {
+      "id": 5,
+      "book_id": 11,
+      "patron_id": 4,
+      "loaned_on": "2015-12-13",
+      "return_by": "2015-12-20",
+      "returned_on": "2015-12-17",
+      "Patron": {
+        "id": 4,
+        "first_name": "Michael",
+        "last_name": "Poley",
+        "address": "7070 NE 10th Ave",
+        "email": "michael.poley@teamtreehouse.com",
+        "library_id": "MCL1011",
+        "zip_code": 91310
+      }
+    }
+  ]
+}

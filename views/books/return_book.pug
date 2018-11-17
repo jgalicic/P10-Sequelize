@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    title Library Manager
+    link(rel='stylesheet', href='../../stylesheets/style.css')
+  body
+    nav
+      ul
+        li
+          a(href=`/home`) Home
+        li
+          a(href=`/books`) Books
+        li
+          a(href=`/patrons`) Patrons
+        li
+          a(href=`/loans`) Loans
+    h1 Return Book
+    p
+      strong Book Title: 
+      | #{books.title}
+    p
+      strong Loaned By: 
+      | #{books.Loans[0].Patron.first_name} #{books.Loans[0].Patron.last_name}
+    p
+      strong Loaned On: 
+      | #{books.Loans[0].loaned_on}
+    p
+      strong Return By: 
+      | #{books.Loans[0].return_by}
+    form(action=`/books/return/${books.id}`, method="post")
+      p
+        label(for='returned_on') Returned on:
+        input#returned_on(type='text', value=`${books.currentDate}`, name="returned_on")
+      p
+        input(type='submit', value='Return Book')

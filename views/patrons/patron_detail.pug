@@ -1,0 +1,58 @@
+extends ../layout.pug
+
+block content
+
+  if errors
+    h2.error Error:
+    ul.error
+      each error in errors
+        li= error.message
+        
+  h1 Patron: #{patron.first_name} #{patron.last_name}
+  form(action=`/patrons/${patron.id}`, method="post")
+    p
+      label(for='first_name') First Name
+      input#first_name(type='text', name="first_name", value=`${patron.first_name}`)
+    p
+      label(for='last_name') Last Name
+      input#last_name(type='text', name="last_name", value=`${patron.last_name}`)
+    p
+      label(for='address')  Address
+      input#address(type='text', name="address", value=`${patron.address}`)
+    p
+      label(for='email') Email
+      input#email(type='text', name="email", value=`${patron.email}`)
+    p
+      label(for='library_id') Library ID
+      input#library_id(type='text', name="library_id", value=`${patron.library_id}`)
+    p
+      label(for='zip_code') Zip Code
+      input#zip_code(type='text', name="zip_code", value=`${patron.zip_code}`)
+    p
+      input(type='submit', value='Update')
+
+  if patron.Loans[0]
+    h2 Loan History
+    table
+      thead
+        tr
+          th Book
+          th Patron 
+          th Loaned on
+          th Return by 
+          th Returned on
+          th Action
+      tbody
+        each loan in patron.Loans
+          tr
+            td
+              a(href=`/books/${loan.Book.id}`) #{loan.Book.title}
+            td
+              a(href=`/patrons/${patron.id}`) #{patron.first_name} #{patron.last_name}
+            td= loan.loaned_on
+            td= loan.return_by
+            td= loan.returned_on
+            td
+              a.button(href=`/books/return/${loan.book_id}`) Return Book
+  else
+    h2 No Loan History
