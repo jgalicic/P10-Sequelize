@@ -37,7 +37,6 @@ router.get("/new", function(req, res, next) {
 
 /* POST New Loan */
 router.post("/new", (req, res, next) => {
-  let lalabody = req.body;
   db.Loan.create(req.body)
     .then(() => res.redirect("/loans"))
     .catch(err => {

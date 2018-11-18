@@ -138,8 +138,37 @@ router.post("/return/:id", (req, res, next) => {
     .then(book => {
       return book.Loans[0].update(req.body);
     })
-    .then(book => {
+    .then(() => {
       res.redirect("/loans/");
+    })
+    .catch(err => {
+      if (err.name === "SequelizeValidationError") {
+        console.log("ERROR!");
+        db.Book.findOne({
+          include: [
+            {
+              model: db.Loan,
+              include: [
+                {
+                  model: db.Patron
+                }
+              ]
+            }
+          ],
+          where: {
+            id: {
+              [Op.eq]: req.params.id
+            }
+          }
+        }).then(books => {
+          res.render(`books/return_book`, {
+            books: books,
+            errors: err.errors
+          });
+        });
+      } else {
+        throw err;
+      }
     })
     .catch(err => {
       res.send(500);

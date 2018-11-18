@@ -15,6 +15,13 @@ html
         li
           a(href=`/loans`) Loans
     h1 Return Book
+
+    if errors
+      h2.error Error:
+      ul.error
+        each error in errors
+          li= error.message
+
     p
       strong Book Title: 
       | #{books.title}

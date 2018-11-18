@@ -64,7 +64,7 @@ router.get("/:id", function(req, res, next) {
 });
 
 /* POST (Update) Patron Detail */
-router.post("/:id", function(req, res, next) {
+router.post("/:id", (req, res, next) => {
   db.Patron.findOne({
     include: [
       {

@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         validate: { notEmpty: { msg: "Return by date is required" } }
       },
       returned_on: {
-        type: DataTypes.DATEONLY
+        type: DataTypes.DATEONLY,
+        validate: { notEmpty: { msg: "Returned on date is required" } }
       }
     },
     { timestamps: false, underscored: true }

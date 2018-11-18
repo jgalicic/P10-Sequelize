@@ -37,12 +37,6 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-// // Create associations aka joins
-// db.Loan.belongsTo(db.Book);
-// db.Book.hasOne(db.Loan);
-// db.Loan.belongsTo(db.Patron);
-// db.Patron.hasMany(db.Loan);
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
